@@ -35,8 +35,8 @@ class PaperBook(Book):
             raise ValueError("Количество страниц должно быть положительным целым числом.")
         self._pages = value
 
-    def __str__(self):
-        return f"{super().__str__()} Количество страниц: {self.pages}"
+    def __repr__(self):
+        return f"{self.__class__.__name__}(name={self.name!r}, author={self.author!r}, pages={self.pages!r})"
 
 
 class AudioBook(Book):
@@ -54,28 +54,35 @@ class AudioBook(Book):
             raise ValueError("Продолжительность должна быть положительным числом.")
         self._duration = value
 
-    def __str__(self):
-        return f"{super().__str__()} Продолжительность: {self.duration} часов"
+    def __repr__(self):
+        return f"{self.__class__.__name__}(name={self.name!r}, author={self.author!r}, duration={self.duration!r})"
 
 if __name__ == '__main__':
     """ ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ """
 
-    # Создание объекта базового класса Book
-    book = Book(name="Имя книги", author="Автор")
-    print(book)  # Вывод: Книга Имя книги. Автор Автор
+    # Создание экземпляра класса Book
+    book1 = Book(name="Гарри Поттер и философский камень", author="Джоан Роулинг")
 
-    # Создание объекта класса PaperBook
-    paper_book = PaperBook(name="Бумажная книга", author="Автор бумажной книги", pages=200)
-    print(paper_book)  # Вывод: Книга Бумажная книга. Автор Автор бумажной книги Количество страниц: 200
+    # Вывод строки с использованием __str__
+    print(str(book1))  # Вывод: Книга Гарри Поттер и философский камень. Автор Джоан Роулинг
 
-    # Изменение количества страниц бумажной книги через свойство
-    paper_book.pages = 250
-    print(paper_book)  # Вывод: Книга Бумажная книга. Автор Автор бумажной книги Количество страниц: 250
+    # Вывод строки с использованием __repr__
+    print(repr(book1))  # Вывод: Book(name='Гарри Поттер и философский камень', author='Джоан Роулинг')
 
-    # Создание объекта класса AudioBook
-    audio_book = AudioBook(name="Аудиокнига", author="Автор аудиокниги", duration=8.5)
-    print(audio_book)  # Вывод: Книга Аудиокнига. Автор Автор аудиокниги Продолжительность: 8.5 часов
+    # Создание экземпляра класса PaperBook
+    paper_book = PaperBook(name="Три товарища", author="Эрих Мария Ремарк", pages=400)
 
-    # Изменение продолжительности аудиокниги через свойство
-    audio_book.duration = 10.2
-    print(audio_book)  # Вывод: Книга Аудиокнига. Автор Автор аудиокниги Продолжительность: 10.2 часов
+    # Вывод строки с использованием __str__
+    print(str(paper_book))  # Вывод: Книга Три товарища. Автор Эрих Мария Ремарк
+
+    # Вывод строки с использованием __repr__
+    print(repr(paper_book))  # Вывод: PaperBook(name='Три товарища', author='Эрих Мария Ремарк', pages=400)
+
+    # Создание экземпляра класса AudioBook
+    audio_book = AudioBook(name="1984", author="Джордж Оруэлл", duration=8.5)
+
+    # Вывод строки с использованием __str__
+    print(str(audio_book))  # Вывод: Книга 1984. Автор Джордж Оруэлл
+
+    # Вывод строки с использованием __repr__
+    print(repr(audio_book))  # Вывод: AudioBook(name='1984', author='Джордж Оруэлл', duration=8.5)
